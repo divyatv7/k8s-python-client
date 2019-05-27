@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: k8s-bigip-ctlr-deployment
+  namespace: kube-system
+spec:
+  # DO NOT INCREASE REPLICA COUNT
+  replicas: 1
+  template:
+    metadata:
+      name: k8s-bigip-ctlr
+      labels:
+        app: k8s-bigip-ctlr
+    spec:
+      serviceAccountName: bigip-ctlr
+      containers:
+        - name: k8s-bigip-ctlr
+          image: "f5networks/k8s-bigip-ctrl:latest"
+          command: ["/app/bin/k8s-bigip-ctlr"]
+          args: [
+            "--bigip-username=admin",
+            "--bigip-password=admin",
+            "--bigip-url=10.145.66.19",
+            "--bigip-partition=test",
+            "--pool-member-type=nodeport"
+            ]
+      imagePullSecrets:
+        - name: f5-docker-images
+        - name: bigip-login
+
