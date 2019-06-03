@@ -33,6 +33,51 @@ sudo cp minikube /usr/local/bin && rm minikube
 minikube start
 
 
+#Windows Installation
+
+###Run Command Prompt as Administrator
+
+###Download Chocolatey
+
+@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+
+###Install Minikube and Kubernetes cli
+
+choco install minikube
+
+choco intall kubernetes-cli
+
+
+###Enable Hyper-V using PowerShell
+
+Open a PowerShell console as Administrator.
+
+###Run the following command:
+
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+
+Reboot the system once the installation is done
+
+###Enable Hyper-V with CMD and DISM
+
+DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V
+
+###Enable the Hyper-V role through Settings
+
+Right click on the Windows button and select ‘Apps and Features’.
+
+Select Programs and Features on the right under related settings.
+
+Select Turn Windows Features on or off.
+
+Select Hyper-V and click OK.
+
+
+###Create a Virtual machine using HyperV
+
+###Run Minikube
+
+minikube start --vm-driver hyperv --hyperv-virtual-switch "Primary Virtual Switch"
 
 
 # Setup and Installation for k8s-python-client:
