@@ -77,7 +77,7 @@ Select Hyper-V and click OK.
 
 ### Run Minikube
 
-minikube start --vm-driver hyperv --hyperv-virtual-switch "Primary Virtual Switch"
+minikube start --vm-driver hyperv --hyperv-virtual-switch "Default Switch"
 
 
 # Setup and Installation for k8s-python-client:
