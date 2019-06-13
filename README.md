@@ -85,7 +85,9 @@ minikube start --vm-driver hyperv --hyperv-virtual-switch "Default Switch"
 ### From source:
 
 git clone --recursive https://github.com/kubernetes-client/python.git
+
 cd python
+
 python setup.py install
 
 ### From PyPi directly:
